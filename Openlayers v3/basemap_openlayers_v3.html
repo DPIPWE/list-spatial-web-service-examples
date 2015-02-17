@@ -26,11 +26,15 @@
     Web Service Endpoint: <a href="http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Topographic/ImageServer">http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Topographic/ImageServer</a><br><br>
     <div id="map" class="map"></div>
     <script type="text/javascript">
+      var attribution = new ol.Attribution({
+           html: 'Topographic Basemap from <a href="http://www.thelist.tas.gov.au/">the LIST</a> ©State of Tasmania <a href="http://creativecommons.org/licenses/by/3.0/"><img src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a>'
+      });
       var map = new ol.Map({
   target: 'map',
   layers: [
        new ol.layer.Tile({
         source: new ol.source.XYZ({
+            attributions: [attribution],
             url: 'http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Topographic/ImageServer/tile/{z}/{y}/{x}'
             })
           })
