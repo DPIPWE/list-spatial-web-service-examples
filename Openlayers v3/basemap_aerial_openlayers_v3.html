@@ -3,27 +3,38 @@
   <head>
     <link rel="stylesheet" href="http://openlayers.org/en/v3.2.1/css/ol.css" type="text/css">
     <style>
-      body {
-      	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      }
-      a {
-      	 text-decoration:none;
-      }
-      a:hover {
-      	 text-decoration:none;
-         text-shadow: 0 0 2px #999;
-      }
-      .map {
-        height: 100%;
-        width: 100%;
-      }
+            .about {
+            	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      	      font-color: black;
+      	      font-size: 10pt;
+            }
+            .about h2 {
+            	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            	font: 100% "Helvetica Neue",Helvetica,Arial,sans-serif;
+      	      font-color: black;
+      	      font-size: 14pt;
+      	      border: none;
+            }
+            .about a {
+      	      text-decoration:none;
+            }
+            .about a:hover {
+      	      text-decoration:none;
+              text-shadow: 0 0 2px #999;
+            }
+            .map {
+              height: 100%;
+              width: 100%;
+            }
     </style>
     <script src="http://openlayers.org/en/v3.2.1/build/ol.js" type="text/javascript"></script>
     <title>OpenLayers 3 example</title>
   </head>
   <body>
-    <h2>LIST Orthophoto Basemap (<a href="http://openlayers.org/">Openlayers Version 3</a>)</h2>
-    Web Service Endpoint: <a href="http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer">http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer</a><br><br>
+    <div class="about">
+      <h2>LIST Orthophoto Basemap (<a href="http://openlayers.org/">Openlayers Version 3</a>)</h2>
+      Web Service Endpoint: <a href="http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer">http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer</a><br><br>
+    </div>
     <div id="map" class="map"></div>
     <script type="text/javascript">
       var attribution = new ol.Attribution({
