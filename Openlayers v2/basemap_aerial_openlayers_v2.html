@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>OpenLayers ArcGIS Cache Example (MapServer Access)</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://dev.openlayers.org/releases/OpenLayers-2.12/theme/default/style.css" type="text/css">
+    <link rel="stylesheet" href="http://dev.openlayers.org/releases/OpenLayers-2.12/examples/style.css" type="text/css">
+    <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers.js"></script>
+    <style type="text/css">
+            html, body, #map {
+                width: 100%;
+                height: 100%;
+            }
+            
+            .about {
+            	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      	      font-color: black;
+      	      font-size: 10pt;
+            }
+            .about h2 {
+            	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            	font: 100% "Helvetica Neue",Helvetica,Arial,sans-serif;
+      	      font-color: black;
+      	      font-size: 14pt;
+      	      border: none;
+            }
+            .about a {
+      	      text-decoration:none;
+            }
+            .about a:hover {
+      	      text-decoration:none;
+              text-shadow: 0 0 2px #999;
+            }
+
+      </style>
+    <script src="http://dev.openlayers.org/releases/OpenLayers-2.12/lib/OpenLayers/Layer/ArcGISCache.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var map, 
+            cacheLayer,
+            testLayer,
+            //This layer requires meta data about the ArcGIS service.  Typically you should use a 
+            //JSONP call to get this dynamically.  For this example, we are just going to hard-code
+            //an example that we got from here (yes, it's very big):
+            //    http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer?f=json&pretty=true
+            layerInfo = {
+                  "currentVersion" : 10.01, 
+                  "serviceDescription" : "", 
+                  "mapName" : "Layers", 
+                  "description" : "", 
+                  "copyrightText" : "Copyright State of Tasmania", 
+                  "layers" : [
+                    {
+                      "id" : 0, 
+                      "name" : "Topographic", 
+                      "parentLayerId" : -1, 
+                      "defaultVisibility" : true, 
+                      "subLayerIds" : null, 
+                      "minScale" : 0, 
+                      "maxScale" : 0
+                    }
+                  ], 
+                  "tables" : [
+                    
+                  ], 
+                  "spatialReference" : {
+                    "wkid" : 3857
+                  }, 
+                  "singleFusedMapCache" : true, 
+                  "tileInfo" : {
+                    "rows" : 256, 
+                    "cols" : 256, 
+                    "dpi" : 96, 
+                    "format" : "PNG8", 
+                    "compressionQuality" : 90, 
+                    "origin" : {
+                      "x" : -20037508.342787001, 
+                      "y" : 20037508.342787001
+                    }, 
+                    "spatialReference": {"wkid": 102100},
+									  "lods": [
+									   {
+									    "level": 0,
+									    "resolution": 156543.03392800014,
+									    "scale": 5.91657527591555E8
+									   },
+									   {
+									    "level": 1,
+									    "resolution": 78271.51696399994,
+									    "scale": 2.95828763795777E8
+									   },
+									   {
+									    "level": 2,
+									    "resolution": 39135.75848200009,
+									    "scale": 1.47914381897889E8
+									   },
+									   {
+									    "level": 3,
+									    "resolution": 19567.87924099992,
+									    "scale": 7.3957190948944E7
+									   },
+									   {
+									    "level": 4,
+									    "resolution": 9783.93962049996,
+									    "scale": 3.6978595474472E7
+									   },
+									   {
+									    "level": 5,
+									    "resolution": 4891.96981024998,
+									    "scale": 1.8489297737236E7
+									   },
+									   {
+									    "level": 6,
+									    "resolution": 2445.98490512499,
+									    "scale": 9244648.868618
+									   },
+									   {
+									    "level": 7,
+									    "resolution": 1222.992452562495,
+									    "scale": 4622324.434309
+									   },
+									   {
+									    "level": 8,
+									    "resolution": 611.4962262813797,
+									    "scale": 2311162.217155
+									   },
+									   {
+									    "level": 9,
+									    "resolution": 305.74811314055756,
+									    "scale": 1155581.108577
+									   },
+									   {
+									    "level": 10,
+									    "resolution": 152.87405657041106,
+									    "scale": 577790.554289
+									   },
+									   {
+									    "level": 11,
+									    "resolution": 76.43702828507324,
+									    "scale": 288895.277144
+									   },
+									   {
+									    "level": 12,
+									    "resolution": 38.21851414253662,
+									    "scale": 144447.638572
+									   },
+									   {
+									    "level": 13,
+									    "resolution": 19.10925707126831,
+									    "scale": 72223.819286
+									   },
+									   {
+									    "level": 14,
+									    "resolution": 9.554628535634155,
+									    "scale": 36111.909643
+									   },
+									   {
+									    "level": 15,
+									    "resolution": 4.77731426794937,
+									    "scale": 18055.954822
+									   },
+									   {
+									    "level": 16,
+									    "resolution": 2.388657133974685,
+									    "scale": 9027.977411
+									   },
+									   {
+									    "level": 17,
+									    "resolution": 1.1943285668550503,
+									    "scale": 4513.988705
+									   },
+									   {
+									    "level": 18,
+									    "resolution": 0.5971642835598172,
+									    "scale": 2256.994353
+									   },
+									   {
+									    "level": 19,
+									    "resolution": 0.29858214164761665,
+									    "scale": 1128.497176
+									   }
+									  ]
+									 },
+									 "initialExtent": {
+									  "xmin": 1.560988395908333E7,
+									  "ymin": -5513960.1054240335,
+									  "xmax": 1.702244024179301E7,
+									  "ymax": -4728798.950878913,
+									  "spatialReference": {"wkid": 102100}
+									 },
+									 "fullExtent": {
+									  "xmin": 1.5350192370125886E7,
+									  "ymin": -5686033.429024176,
+									  "xmax": 1.721403286783113E7,
+									  "ymax": -4471601.923629618,
+									  "spatialReference": {"wkid": 102100}
+									 },
+
+                  "units" : "esriMeters", 
+                  "supportedImageFormatTypes" : "PNG24,PNG,JPG,DIB,TIFF,EMF,PS,PDF,GIF,SVG,SVGZ,AI,BMP", 
+                  "documentInfo" : {
+                    "Title" : "", 
+                    "Author" : "", 
+                    "Comments" : "", 
+                    "Subject" : "", 
+                    "Category" : "", 
+                    "Keywords" : "", 
+                    "Credits" : ""
+                  }, 
+                  "capabilities" : "Map"
+                };
+
+        function init(){
+            //The max extent for spherical mercator
+            var maxExtent = new OpenLayers.Bounds(15823421, -5410340, 16800592, -4806181);
+            
+            //Max extent from layerInfo above            
+            var layerMaxExtent = new OpenLayers.Bounds(
+                layerInfo.fullExtent.xmin, 
+                layerInfo.fullExtent.ymin, 
+                layerInfo.fullExtent.xmax, 
+                layerInfo.fullExtent.ymax  
+            );
+            
+            var resolutions = [];
+            for (var i=0; i<layerInfo.tileInfo.lods.length; i++) {
+                resolutions.push(layerInfo.tileInfo.lods[i].resolution);
+            }
+            
+            map = new OpenLayers.Map('map', {
+                maxExtent: maxExtent,
+                controls: [
+                        new OpenLayers.Control.Navigation({dragPanOptions: {enableKinetic: true}}),
+                        new OpenLayers.Control.PanZoomBar(),
+                        new OpenLayers.Control.MousePosition()],
+                StartBounds: layerMaxExtent,
+                units: (layerInfo.units == "esriFeet") ? 'ft' : 'm',
+                resolutions: resolutions,
+                restrictedExtent: new OpenLayers.Bounds(15873301.5, -5424727.4, 16657520.4, -4753310.9),
+                tileSize: new OpenLayers.Size(layerInfo.tileInfo.width, layerInfo.tileInfo.height),                
+                projection: 'EPSG:' + layerInfo.spatialReference.wkid
+            });
+            
+            
+            
+            cacheLayer = new OpenLayers.Layer.ArcGISCache( "AGSCache",
+                    "http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer", {
+                        isBaseLayer: true,
+
+                        //From layerInfo above                        
+                        resolutions: resolutions,                        
+                        tileSize: new OpenLayers.Size(layerInfo.tileInfo.cols, layerInfo.tileInfo.rows),                        
+                        tileOrigin: new OpenLayers.LonLat(layerInfo.tileInfo.origin.x , layerInfo.tileInfo.origin.y),                        
+                        maxExtent: layerMaxExtent,                        
+                        projection: 'EPSG:' + layerInfo.spatialReference.wkid
+                    });
+
+            
+                       
+            map.addLayers([cacheLayer]);
+            
+            //map.addControl( new OpenLayers.Control.PanZoomBar() );
+            //map.addControl( new OpenLayers.Control.MousePosition() );
+            map.zoomToExtent(new OpenLayers.Bounds(15823421, -5410340, 16800592, -4806181));
+        }
+    </script>
+  </head>
+  <body onload="init()">
+    <div class="about">
+      <h2>LIST Orthophoto Basemap (<a href="http://openlayers.org/two/">Openlayers Version 2</a>)</h2>
+      Web Service Endpoint: <a href="http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer">http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Orthophoto/ImageServer</a><br><br>
+    </div>
+    <div id="map"></div>
+  </body>
+</html>
