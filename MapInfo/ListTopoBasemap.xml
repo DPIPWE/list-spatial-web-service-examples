@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TileServerInfo Type="LevelRowColumn">
+  <Url>http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Topographic/ImageServer/tile/{LEVEL}/{COL}/{ROW}?.png</Url>
+  <MinLevel>3</MinLevel>
+  <MaxLevel>18</MaxLevel>
+  <TileSize Height="256" />
+  <AttributionText Font="Font (&quot;Tahoma&quot;,257,8,16777215,0)">the LIST &#169; State of Tasmania</AttributionText>
+</TileServerInfo>
