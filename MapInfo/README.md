@@ -1,1 +1,1 @@
-This folder contains documentation and examples for use of LIST Web Services with MapInfo
+This folder contains documentation and examples for use of LIST Web Services with MapInfo. In particular, it contains MapInfo "Table" (.TAB) files that use the LIST REST tile web services for basemaps that are not directly supported by MapInfo. To view the data correctly, it is recommended to load an existing dataset first (that is within the extent of Tasmania) before loading any of these tile services. 
