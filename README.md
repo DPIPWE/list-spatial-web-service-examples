@@ -4,7 +4,7 @@ This repository contains documentation and examples for use of LIST Web Services
 
 ## Documentation
 * [ArcGIS REST API Documentation](http://services.thelist.tas.gov.au/arcgis/sdk/rest/index.html?catalog.html)
-* [Basic Usage](https://github.com/DPIPWE/list-spatial-web-service-examples/wiki/Basic+Usage)
+* [User Guide](https://github.com/DPIPWE/list-spatial-web-service-examples/raw/master/Documentation/LIST_Spatial_Web_Services_User_Guide.pdf)
 * [Other Usage](https://github.com/DPIPWE/list-spatial-web-service-examples/wiki/Other+Usage)
 
 ## Compatible Web Mapping APIs
