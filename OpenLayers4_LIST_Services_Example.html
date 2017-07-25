@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
+       Remove this if you use the .htaccess -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>OpenLayers3_LIST_Services_Example</title>
+  <meta name="description" content="">
+  <meta name="author" content="jward">
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.2.0/css/ol.css" type="text/css">
+  <!-- The line below is only needed for old environments like Internet Explorer and Android 4.x -->
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL"></script>
+  <script src="https://openlayers.org/en/v4.2.0/build/ol.js"></script>
+  
+  <script type="text/javascript">
+  	var result;
+  	function getLayerIDNumberFromName (layerURL, layerName) {
+        $.ajax({
+            type: "GET",
+            url: layerURL + "?request=GetCapabilities&service=WMS",
+            dataType: "xml",
+            success: function (xml) { 
+                result = xml.city;
+                document.myform.result1.value = result;
+            },
+            error: function (xml) {
+                alert(xml.status + ' ' + xml.statusText);
+            }
+        });
+  }
+
+  </script>
+</head>
+
+<body>
+ <div id="map" class="map"></div>
+    <script>
+      var baseURL = 'http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/Topographic/MapServer';
+      var layerURL = 'http://services.thelist.tas.gov.au/arcgis/rest/services/Public/CadastreAndAdministrative/MapServer';
+
+      /*getLayerIDNumberFromName(layerURL);
+      alert(result);*/
+      
+      
+      var layers = [
+        new ol.layer.Tile({
+          source: new ol.source.TileArcGISRest({
+            url: baseURL,
+            attributions: '<a href="https://creativecommons.org/licenses/by/3.0/au/" target="_blank"><img src="https://licensebuttons.net/l/by/3.0/88x31.png" alt="Creative Commons (BY)"></a><a href="http://www.thelist.tas.gov.au" target="_blank">the LIST</a> © State of Tasmania '
+          })
+        }),
+		new ol.layer.Image({
+          source: new ol.source.ImageArcGISRest({
+            ratio: 1,
+            params: {LAYERS: 'show:6'},
+            url: layerURL
+          })
+        })
+      ];
+      var map = new ol.Map({
+      	layers: layers,
+        target: 'map',
+        view: new ol.View({
+          center: [16316000, -5183000],
+          zoom: 8
+        })
+      });
+
+    </script>
+</body>
+</html>
