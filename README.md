@@ -10,6 +10,7 @@ This repository contains documentation and examples for use of LIST Web Services
 * [LISTmap Integration Guide](https://github.com/DPIPWE/list-spatial-web-service-examples/raw/master/Documentation/LIST_Spatial_Web_Services_Use)
 
 ## Compatible Web Mapping APIs
+* [Openlayers v4](http://openlayers.org)
 * [Openlayers v3](http://openlayers.org)
 * [Openlayers v2](http://openlayers.org/two/)
 * [Leaflet](http://leafletjs.com/)
