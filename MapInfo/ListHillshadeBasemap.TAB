@@ -1,0 +1,13 @@
+!table
+!version 750
+!charset WindowsLatin1
+
+Definition Table
+  File "ListHillshadeBasemap.xml"
+  Type "WMS"
+  CoordSys Earth Projection 1, 104
+begin_metadata
+"\IsReadOnly" = "FALSE"
+"\MapInfo" = ""
+"\MapInfo\TableID" = "908bcaef-bc19-4956-b03c-914ec292b047"
+end_metadata
