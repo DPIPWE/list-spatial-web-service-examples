@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TileServerInfo Type="LevelRowColumn">
-  <Url>http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/TasmapRaster/ImageServer/tile/{LEVEL}/{COL}/{ROW}?.png</Url>
+  <Url>http://services.thelist.tas.gov.au/arcgis/rest/services/Basemaps/TasmapRaster/MapServer/tile/{LEVEL}/{COL}/{ROW}?.png</Url>
   <MinLevel>6</MinLevel>
   <MaxLevel>16</MaxLevel>
   <TileSize Height="256" />
